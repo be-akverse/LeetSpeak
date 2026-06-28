@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1337 // LEETSPEAK TYPEFACE</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+        :root {
+            --neon: #00ff41;
+            --neon-dim: #00cc33;
+            --dark: #030303;
+            --panel: rgba(10, 20, 10, 0.85);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--dark);
+            color: var(--neon);
+            font-family: 'Share Tech Mono', 'Courier New', monospace;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        #matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.35;
+        }
+
+        .crt::after {
+            content: " ";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%);
+            background-size: 100% 4px;
+            z-index: 999;
+            pointer-events: none;
+            animation: flicker 0.15s infinite;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 0.97; }
+            50% { opacity: 1; }
+            100% { opacity: 0.98; }
+        }
+
+        @font-face {
+            font-family: 'Leetspeak';
+            src: url('fonts/Leetcode-Regular.otf') format('opentype'),
+                 url('fonts/Leetcode-Regular.ttf') format('truetype');
+            font-display: swap;
+        }
+
+        .leet-font {
+            font-family: 'Leetspeak', 'Share Tech Mono', monospace;
+            color: var(--neon);
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        header {
+            text-align: center;
+            padding: 5rem 0 3rem;
+            position: relative;
+        }
+
+        .glitch {
+            font-size: clamp(5rem, 18vw, 14rem);
+            font-weight: bold;
+            text-transform: uppercase;
+            position: relative;
+            letter-spacing: -0.08em;
+            line-height: 0.9;
+            text-shadow: 
+                0.05em 0 0 rgba(255,0,0,0.75),
+                -0.025em -0.05em 0 rgba(0,255,0,0.75),
+                0.025em 0.05em 0 rgba(0,0,255,0.75);
+            animation: glitch 3s infinite;
+        }
+
+        @keyframes glitch {
+            0% { text-shadow: 0.05em 0 0 rgba(255,0,0,0.75), -0.05em -0.025em 0 rgba(0,255,0,0.75), -0.025em 0.05em 0 rgba(0,0,255,0.75); }
+            14% { text-shadow: 0.05em 0 0 rgba(255,0,0,0.75), -0.05em -0.025em 0 rgba(0,255,0,0.75), -0.025em 0.05em 0 rgba(0,0,255,0.75); }
+            15% { text-shadow: -0.05em -0.025em 0 rgba(255,0,0,0.75), 0.025em 0.025em 0 rgba(0,255,0,0.75), -0.05em -0.05em 0 rgba(0,0,255,0.75); }
+            49% { text-shadow: -0.05em -0.025em 0 rgba(255,0,0,0.75), 0.025em 0.025em 0 rgba(0,255,0,0.75), -0.05em -0.05em 0 rgba(0,0,255,0.75); }
+            50% { text-shadow: 0.025em 0.05em 0 rgba(255,0,0,0.75), 0.05em 0 0 rgba(0,255,0,0.75), 0 -0.05em 0 rgba(0,0,255,0.75); }
+            99% { text-shadow: 0.025em 0.05em 0 rgba(255,0,0,0.75), 0.05em 0 0 rgba(0,255,0,0.75), 0 -0.05em 0 rgba(0,0,255,0.75); }
+            100% { text-shadow: -0.025em 0 0 rgba(255,0,0,0.75), -0.025em -0.025em 0 rgba(0,255,0,0.75), -0.025em -0.05em 0 rgba(0,0,255,0.75); }
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.7;
+            margin-top: 1.5rem;
+            letter-spacing: 0.6em;
+            text-transform: uppercase;
+        }
+
+        .tagline {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.5;
+            letter-spacing: 0.2em;
+        }
+
+        .download-btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.9rem 2.2rem;
+            background: transparent;
+            border: 1px solid var(--neon);
+            color: var(--neon);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .download-btn:hover {
+            background: var(--neon);
+            color: var(--dark);
+            box-shadow: 0 0 25px rgba(0, 255, 65, 0.35);
+        }
+
+        .demo-section {
+            background: var(--panel);
+            border: 1px solid var(--neon-dim);
+            border-radius: 2px;
+            padding: 3rem;
+            margin: 4rem 0;
+            backdrop-filter: blur(10px);
+            box-shadow: 
+                0 0 60px rgba(0, 255, 65, 0.08),
+                inset 0 0 30px rgba(0, 255, 65, 0.03);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-section::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(45deg, var(--neon), transparent, var(--neon));
+            z-index: -1;
+            border-radius: 2px;
+            opacity: 0.25;
+            animation: borderRotate 6s linear infinite;
+        }
+
+        @keyframes borderRotate {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        .demo-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            margin-bottom: 1rem;
+            opacity: 0.6;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .demo-label::before {
+            content: '►';
+            font-size: 0.7rem;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .input-area {
+            width: 100%;
+            background: rgba(0, 20, 0, 0.6);
+            border: 1px solid var(--neon-dim);
+            color: var(--neon);
+            padding: 1.5rem;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1.3rem;
+            outline: none;
+            resize: vertical;
+            min-height: 140px;
+            margin-bottom: 2.5rem;
+            border-radius: 2px;
+        }
+
+        .input-area:focus {
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.15);
+            border-color: var(--neon);
+        }
+
+        .input-area::placeholder {
+            color: rgba(0, 255, 65, 0.3);
+        }
+
+        .output-display {
+            width: 100%;
+            min-height: 140px;
+            background: rgba(0, 10, 0, 0.9);
+            border: 1px solid var(--neon);
+            padding: 1.5rem;
+            font-size: 2.2rem;
+            word-wrap: break-word;
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+            line-height: 1.4;
+        }
+
+        .output-display::after {
+            content: '█';
+            animation: blink 1.1s infinite;
+            margin-left: 4px;
+            opacity: 0.8;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .alphabet-section {
+            margin: 5rem 0;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4em;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 2px;
+            background: var(--neon);
+            margin: 1.5rem auto 0;
+            box-shadow: 0 0 15px var(--neon);
+        }
+
+        .alphabet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .char-card {
+            background: var(--panel);
+            border: 1px solid rgba(0, 255, 65, 0.25);
+            padding: 1.8rem 1rem;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: default;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+            border-radius: 2px;
+        }
+
+        .char-card:hover {
+            transform: translateY(-6px) scale(1.08);
+            border-color: var(--neon);
+            box-shadow: 0 15px 40px rgba(0, 255, 65, 0.25);
+            z-index: 10;
+        }
+
+        .char-card .key {
+            font-size: 0.75rem;
+            opacity: 0.4;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+
+        .char-card .glyph {
+            font-size: 2.8rem;
+            font-family: 'Leetspeak', 'Share Tech Mono', monospace;
+            color: var(--neon);
+            text-shadow: 0 0 15px rgba(0, 255, 65, 0.6);
+            line-height: 1;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .info-section {
+            margin: 4rem 0;
+            padding: 2rem;
+            border-left: 2px solid var(--neon-dim);
+            background: rgba(0, 255, 65, 0.03);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            opacity: 0.85;
+        }
+
+        .info-section code {
+            background: rgba(0, 255, 65, 0.15);
+            padding: 0.2rem 0.5rem;
+            border-radius: 2px;
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--neon);
+        }
+
+        footer {
+            text-align: center;
+            padding: 5rem 0 3rem;
+            opacity: 0.4;
+            font-size: 0.85rem;
+            letter-spacing: 0.3em;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 1.2rem; }
+            .demo-section { padding: 1.8rem; }
+            .alphabet-grid { grid-template-columns: repeat(auto-fill, minmax(85px, 1fr)); gap: 0.8rem; }
+            .output-display { font-size: 1.6rem; }
+            .glitch { font-size: clamp(4rem, 20vw, 6rem); }
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--dark); }
+        ::-webkit-scrollbar-thumb { background: var(--neon-dim); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--neon); }
+    </style>
+</head>
+<body class="crt">
+    <canvas id="matrix"></canvas>
+
+    <div class="container">
+        <header>
+            <div class="glitch">1337</div>
+            <div class="subtitle">Leetspeak Typeface</div>
+            <div class="tagline">Press A. See 4. Simple.</div>
+            <a href="fonts/Leetcode-Regular.otf" download class="download-btn">Download Font</a>
+        </header>
+
+        <section class="demo-section">
+            <div class="demo-label">Initialize_Translator.exe</div>
+            <textarea class="input-area" id="input" placeholder="Type normal text here..." spellcheck="false"></textarea>
+
+            <div class="demo-label">Output_Render.font</div>
+            <div class="output-display leet-font" id="output">Waiting for input...</div>
+        </section>
+
+        <section class="alphabet-section">
+            <h2 class="section-title">Glyph Map</h2>
+            <div class="alphabet-grid" id="alphabet"></div>
+        </section>
+
+        <section class="info-section">
+            <p><strong>// FONT INTEGRATION NOTES:</strong></p>
+            <p>1. Place your font files (<code>leetspeak.otf</code> or <code>leetspeak.ttf</code>) in a folder named "fonts" which should be in the same directory as this HTML file.</p>
+            <p>2. The <code>@font-face</code> declaration is already wired in the CSS.</p>
+            <p>3. This page currently simulates your font's behavior via JavaScript. Once your font is loaded, the visual result will be identical — but rendered natively by the browser.</p>
+        </section>
+
+        <footer>
+            <p>// END OF LINE //</p>
+        </footer>
+    </div>
+
+    <script>
+
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*';
+        const fontSize = 14;
+        const columns = Math.floor(width / fontSize);
+        const drops = Array(columns).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(3, 3, 3, 0.04)';
+            ctx.fillRect(0, 0, width, height);
+
+            ctx.fillStyle = '#00ff41';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 50);
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        const leetMap = {
+            'a': '4', 'b': '|3', 'c': '[', 'd': ')', 'e': '3', 'f': '|=',
+            'g': '6', 'h': '#', 'i': '1', 'j': ']', 'k': '|<', 'l': '|',
+            'm': '|\/|', 'n': '|\|', 'o': '0', 'p': '|*', 'q': '<|',
+            'r': '|2', 's': '5', 't': '7', 'u': '(_)', 'v': '\/',
+            'w': '\/\/', 'x': '><', 'y': '|/', 'z': '2',
+            ' ': ' ', '0': 'O', '1': 'I', '2': 'Z', '3': 'E',
+            '4': 'A', '5': 'S', '6': 'G', '7': 'T', '8': 'B', '9': 'g'
+        };
+
+        const input = document.getElementById('input');
+        const output = document.getElementById('output');
+
+        input.addEventListener('input', (e) => {
+            const text = e.target.value.toLowerCase();
+            let result = '';
+            for (let char of text) {
+                result += leetMap[char] || char;
+            }
+            output.textContent = result || 'Waiting for input...';
+        });
+        const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+        const grid = document.getElementById('alphabet');
+
+        alphabet.forEach((letter, index) => {
+            const lower = letter.toLowerCase();
+            const glyph = leetMap[lower] || letter;
+
+            const card = document.createElement('div');
+            card.className = 'char-card';
+            card.style.animationDelay = `${index * 0.04}s`;
+            card.innerHTML = `
+                <div class="key">KEY: ${letter}</div>
+                <div class="glyph">${glyph}</div>
+            `;
+            grid.appendChild(card);
+        });
+        setInterval(() => {
+            const cards = document.querySelectorAll('.char-card');
+            const randomCard = cards[Math.floor(Math.random() * cards.length)];
+            if (randomCard) {
+                randomCard.style.transform = 'translateX(3px)';
+                setTimeout(() => {
+                    randomCard.style.transform = '';
+                }, 80);
+            }
+        }, 3000);
+    </script>
+</body>
+</html>
