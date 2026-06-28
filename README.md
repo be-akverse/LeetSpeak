@@ -4,7 +4,7 @@
 Leetspeak, also known as 1337 or leet, is a form of written communication. It involves replacing letters with numbers, special characters, or other symbols.
 ## Live Demo
 
-**[View the Website](https://be-akverse.github.io/)**
+**[View the Website](https://be-akverse.github.io/LeetSpeak/)**
 
 Making Fonts is not my thing but making websites is!
 
