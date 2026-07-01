@@ -1,5 +1,9 @@
 
-## What LeetSpeak is?
+## LeetSpeak
+
+<p align="center">
+  <img src="assets/leet-speak.jpg" alt="LeetSpeak Cipher" width="600">
+</p>
 
 Leetspeak, also known as 1337 or leet, is a form of written communication. It involves replacing letters with numbers, special characters, or other symbols.
 ## Live Demo
