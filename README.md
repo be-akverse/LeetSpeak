@@ -28,7 +28,6 @@ Making Fonts is not my thing but making websites is!
 
 ## Open Source
 
-This project is licensed under the **MIT License** feel free to use the font in personal or commercial projects. Just don't blame me if your design looks like a toddler made it. That's the point.
-
+This project is licensed under the **MIT License** feel free to use the font in personal or commercial projects.
 
 
